@@ -13,7 +13,9 @@ variables:
   breakCodesignValidationInjection: true
   #
   # set the following in the pipeline's web UI editor:
-  # GITHUB_TOKEN  # GitHub PAT with scopes: repo; must have SSO enabled for GH org 'microsoft' for corp user
+  # GITHUB_TOKEN        # GitHub PAT with scopes: repo; must have SSO enabled for GH org 'microsoft' for corp user
+  # AZ_DevOps_Read_PAT  # PAT to read from AzDO feed in msazure
+  # VSIX_VERSION        # VSIX package/release version; must be manually managed for now!
 
 trigger:
   - release/*
