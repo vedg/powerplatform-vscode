@@ -23,7 +23,7 @@ const pslist = require('ps-list');
 const webPackConfig = require('./webpack.config');
 const distdir = path.resolve('./dist');
 const packagedir = path.resolve('./package');
-const readPAT = process.env['AZ_DevOps_Read_PAT'];
+const readPAT = argv.AZ_DevOps_Read_PAT || process.env['AZ_DevOps_Read_PAT'];
 
 async function clean() {
     (await pslist())
@@ -83,7 +83,7 @@ async function nugetInstall(nugetSource, packageName, version, targetDir) {
     };
     if (selectedFeed.authenticated) {
         if (!readPAT) {
-            throw new Error(`nuget feed ${nugetSource} requires authN but env var 'AZ_DevOps_Read_PAT' was not defined!`);
+            throw new Error(`nuget feed ${nugetSource} requires authN but gulpfile var or env var 'AZ_DevOps_Read_PAT' was not defined!`);
         }
         reqInit.headers['Authorization'] = `Basic ${Buffer.from('PAT:' + readPAT).toString('base64')}`;
     }
