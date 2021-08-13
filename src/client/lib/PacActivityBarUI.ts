@@ -11,7 +11,32 @@ export function RegisterPanels(pacWrapper: PacWrapper): vscode.Disposable[] {
     const solutionPanel = new PacFlatDataView(() => pacWrapper.solutionList(), item => new SolutionTreeItem(item));
     registrations.push(
         vscode.window.registerTreeDataProvider("pacCLI.solutionPanel", solutionPanel),
-        vscode.commands.registerCommand("pacCLI.solutionPanel.refresh", () => solutionPanel.refresh()));
+        vscode.commands.registerCommand("pacCLI.solutionPanel.refresh", () => solutionPanel.refresh()),
+        vscode.commands.registerCommand("pacCLI.solutionPanel.exportSolution", async (item: SolutionTreeItem) => {
+            const defaultFile = vscode.Uri.file(`./${item.model.FriendlyName}.zip`); // TODO: can the friendly name contain invalid path characters?
+            const location = await vscode.window.showSaveDialog({
+                title: `Export Dataverse Solution ${item.model.FriendlyName}`,
+                saveLabel: 'Export',
+                defaultUri: defaultFile,
+                filters: {'zip': ['zip']}});
+            if (location) {
+                await vscode.window.withProgress({location: vscode.ProgressLocation.Notification, title: `Exporting solution: ${item.model.FriendlyName}`},
+                    async () => await pacWrapper.solutionExport(item.model.SolutionUniqueName, location.fsPath));
+            }
+        }),
+        vscode.commands.registerCommand("pacCLI.solutionPanel.cloneSolution", async (item: SolutionTreeItem) => {
+            const location = await vscode.window.showOpenDialog({
+                defaultUri: vscode.Uri.file('./'),
+                title: `Clone Dataverse Solution ${item.model.FriendlyName}`,
+                openLabel: 'Clone',
+                canSelectFiles: false,
+                canSelectFolders: true
+            });
+            if (location && location[0]) {
+                await vscode.window.withProgress({location: vscode.ProgressLocation.Notification, title: `Cloning solution: ${item.model.FriendlyName}`},
+                    async () => await pacWrapper.solutionClone(item.model.SolutionUniqueName, location[0].fsPath));
+            }
+        }));
 
     const adminEnvironmentPanel = new PacFlatDataView(
         () => pacWrapper.adminEnvironmentList(),

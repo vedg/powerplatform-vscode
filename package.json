@@ -138,6 +138,16 @@
         "icon": "$(refresh)"
       },
       {
+        "command": "pacCLI.solutionPanel.exportSolution",
+        "title": "Export Solution",
+        "icon": "$(export)"
+      },
+      {
+        "command": "pacCLI.solutionPanel.cloneSolution",
+        "title": "Clone Solution",
+        "icon": "$(clone)"
+      },
+      {
         "command": "pacCLI.adminEnvironmentPanel.refresh",
         "title": "Refresh",
         "icon": "$(refresh)"
@@ -158,6 +168,11 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "EXPERIMENTAL: Enable the PowerPlatform Auth Profile activity bar panel"
+        },
+        "powerplatform.experimental.solutionPanel.exportAndCloneActions": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "EXPERIMENTAL: Enable Export and Clone context actions on the Solution Panel"
         },
         "powerplatform.experimental.pacLab": {
           "type": "boolean",
@@ -206,6 +221,14 @@
           "when": "never"
         },
         {
+          "command": "pacCLI.solutionPanel.exportSolution",
+          "when": "never"
+        },
+        {
+          "command": "pacCLI.solutionPanel.cloneSolution",
+          "when": "never"
+        },
+        {
           "command": "pacCLI.adminEnvironmentPanel.refresh",
           "when": "never"
         },
@@ -249,6 +272,16 @@
         {
           "command": "pacCLI.authPanel.selectAuthProfile",
           "when": "view == pacCLI.authPanel",
+          "group": "inline"
+        },
+        {
+          "command": "pacCLI.solutionPanel.exportSolution",
+          "when": "view == pacCLI.solutionPanel && config.powerplatform.experimental.solutionPanel.exportAndCloneActions",
+          "group": "inline"
+        },
+        {
+          "command": "pacCLI.solutionPanel.cloneSolution",
+          "when": "view == pacCLI.solutionPanel && config.powerplatform.experimental.solutionPanel.exportAndCloneActions",
           "group": "inline"
         }
       ]

@@ -129,6 +129,14 @@ export class PacWrapper {
         return this.executeCommandAndParseResults<PacSolutionListOutput>(new PacArguments("solution", "list"));
     }
 
+    public async solutionExport(solutionName: string, filePath: string): Promise<PacOutput> {
+        return this.executeCommandAndParseResults<PacOutput>(new PacArguments("solution", "export", "--name", solutionName, "--path", filePath));
+    }
+
+    public async solutionClone(solutionName: string, folderPath: string): Promise<PacOutput> {
+        return this.executeCommandAndParseResults<PacOutput>(new PacArguments("solution", "clone", "--name", solutionName, "--outputDirectory", folderPath));
+    }
+
     public async enableTelemetry(): Promise<PacOutput> {
         return this.executeCommandAndParseResults<PacOutput>(new PacArguments("telemetry", "enable"));
     }
