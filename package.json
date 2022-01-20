@@ -175,6 +175,22 @@
         "icon": "$(refresh)"
       },
       {
+        "command": "pacCLI.envAndSolutionsPanel.adminCreateEnvironment",
+        "title": "Create Environment ~"
+      },
+      {
+        "command": "pacCLI.envAndSolutionsPanel.adminDeleteEnvironment",
+        "title": "Delete Environment ~"
+      },
+      {
+        "command": "pacCLI.envAndSolutionsPanel.adminBackupEnvironment",
+        "title": "Backup Environment ~"
+      },
+      {
+        "command": "pacCLI.envAndSolutionsPanel.adminRestoreEnvironment",
+        "title": "Restore Environment ~"
+      },
+      {
         "command": "pacCLI.envAndSolutionsPanel.copyDisplayName",
         "title": "%pacCLI.envAndSolutionsPanel.copyDisplayName.title%"
       },
@@ -282,6 +298,22 @@
           "when": "never"
         },
         {
+          "command": "pacCLI.envAndSolutionsPanel.adminCreateEnvironment",
+          "when": "never"
+        },
+        {
+          "command": "pacCLI.envAndSolutionsPanel.adminRestoreEnvironment",
+          "when": "never"
+        },
+        {
+          "command": "pacCLI.envAndSolutionsPanel.adminBackupEnvironment",
+          "when": "never"
+        },
+        {
+          "command": "pacCLI.envAndSolutionsPanel.adminDeleteEnvironment",
+          "when": "never"
+        },
+        {
           "command": "pacCLI.authPanel.selectAuthProfile",
           "when": "never"
         },
@@ -322,6 +354,11 @@
           "command": "pacCLI.envAndSolutionsPanel.refresh",
           "when": "view == pacCLI.envAndSolutionsPanel",
           "group": "navigation"
+        },
+        {
+          "command": "pacCLI.envAndSolutionsPanel.adminCreateEnvironment",
+          "when": "view == pacCLI.envAndSolutionsPanel",
+          "group": "admin"
         }
       ],
       "view/item/context": [
@@ -373,6 +410,21 @@
         {
           "command": "pacCLI.envAndSolutionsPanel.copyOrganizationId",
           "when": "view == pacCLI.envAndSolutionsPanel && viewItem == ENVIRONMENT"
+        },
+        {
+          "command": "pacCLI.envAndSolutionsPanel.adminDeleteEnvironment",
+          "when": "view == pacCLI.envAndSolutionsPanel && viewItem == ENVIRONMENT",
+          "group": "admin"
+        },
+        {
+          "command": "pacCLI.envAndSolutionsPanel.adminBackupEnvironment",
+          "when": "view == pacCLI.envAndSolutionsPanel && viewItem == ENVIRONMENT",
+          "group": "admin"
+        },
+        {
+          "command": "pacCLI.envAndSolutionsPanel.adminRestoreEnvironment",
+          "when": "view == pacCLI.envAndSolutionsPanel && viewItem == ENVIRONMENT",
+          "group": "admin"
         }
       ]
     },
