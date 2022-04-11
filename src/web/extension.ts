@@ -9,6 +9,8 @@ import { fetchData } from './services/fetchData';
 export const portalsFolderName = 'StarterPortal';
 export const portalsUriScheme = 'portals';
 const portalsWorkspaceName = 'Power Portals';
+export const portalConfigScheme = '.portalconfig';
+export const vscodeconfigScheme = '.vscodeconfig';
 
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -47,6 +49,7 @@ export function activate(context: vscode.ExtensionContext): void {
 
         // some more files & folders
         vscode.window.showInformationMessage('creating portals folder');
+        //TODO: update to the right folder structure
         createFileSystem(portalsFS);
 
         // Do something before delay

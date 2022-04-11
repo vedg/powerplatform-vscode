@@ -44,4 +44,27 @@ export async function saveCodeInDataverse(accessToken: string, requestUrl: strin
     }
 }
 
+export async function deleteInDataverse(accessToken: string, requestUrl: string, fileUri: vscode.Uri) {
+
+    const fileExtensionRX = /(?<extension>\.[0-9a-z]+$)/i;
+    const fileExtensionMatch = fileExtensionRX.exec(fileUri.path);
+
+    if (fileExtensionMatch?.groups === undefined) {
+        return undefined;
+    }
+
+    const { extension } = fileExtensionMatch.groups;
+
+    console.log(extension);
+    fetch(requestUrl+'/delete', {
+     method: 'DELETE'
+    })
+  .then(res => res.json())
+  .then(data => {
+    console.log("file deleted" + data)
+  })
+  .catch(err => console.log(err));
+}
+
+
 

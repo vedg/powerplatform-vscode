@@ -24,13 +24,13 @@ export function getHeaderPaginated(accessToken: string, ps : string) {
 }
 
 
-export function getWebpageRequestUrl(method: string, dataverseOrg: string, api: string, data: string, version: string, entity: string, entityId: string, adx_websiteid: string)
+export function getWebpageRequestUrl(method: string, dataverseOrg: string, api: string, data: string, version: string, entity: string, entityId: string)
 {
     let requestUrl = '';
     switch (method) {
         case 'GET':
             if (entity === 'adx_webpages') {
-                requestUrl = `https://${dataverseOrg}/${api}/${data}/${version}/${entity}?$filter=${_adx_websiteid_value} eq '7c14b4e4-0d8b-ec11-b3fe-00224829de6c'&$select=adx_name`;
+                requestUrl = `https://${dataverseOrg}/${api}/${data}/${version}/${entity}(${entityId})?$select=adx_name`;
             }
             else if (entity === 'adx_webtemplates') {
                 requestUrl = `https://${dataverseOrg}/${api}/${data}/${version}/${entity}(${entityId})?$select=adx_name,adx_source`;
