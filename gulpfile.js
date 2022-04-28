@@ -218,13 +218,13 @@ async function snapshot() {
         process.chdir(orgDir);
     }
 }
-const cliVersion = '1.14.4';
+const cliVersion = '1.14.5-daily-22042721';
 
 const recompile = gulp.series(
     clean,
-    async () => nugetInstall('CAP_ISVExp_Tools_Stable', 'Microsoft.PowerApps.CLI',cliVersion, path.resolve(distdir, 'pac')),
-    async () => nugetInstall('CAP_ISVExp_Tools_Stable', 'Microsoft.PowerApps.CLI.Core.osx-x64', cliVersion, path.resolve(distdir, 'pac')),
-    async () => nugetInstall('CAP_ISVExp_Tools_Stable', 'Microsoft.PowerApps.CLI.Core.linux-x64', cliVersion, path.resolve(distdir, 'pac')),
+    async () => nugetInstall('CAP_ISVExp_Tools_Daily', 'Microsoft.PowerApps.CLI',cliVersion, path.resolve(distdir, 'pac')),
+    async () => nugetInstall('CAP_ISVExp_Tools_Daily', 'Microsoft.PowerApps.CLI.Core.osx-x64', cliVersion, path.resolve(distdir, 'pac')),
+    async () => nugetInstall('CAP_ISVExp_Tools_Daily', 'Microsoft.PowerApps.CLI.Core.linux-x64', cliVersion, path.resolve(distdir, 'pac')),
     translationsExport,
     translationsImport,
     translationsGenerate,
